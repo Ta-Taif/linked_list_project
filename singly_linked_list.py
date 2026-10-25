@@ -66,3 +66,26 @@ class SinglyLinkedList:
         if current is self._tail:
             self._tail = new_node
         self._count += 1
+
+    def remove(self, value):
+        """Remove the first node holding value."""
+        previous = None
+        current = self._head
+        while current is not None and current.data != value:
+            previous = current
+            current = current.next
+        if current is None:
+            raise ValueError(
+                f"remove failed: value {value!r} not found in list")
+        self._unlink(previous, current)
+
+    def _unlink(self, previous, current):
+        """Helper: remove current (whose predecessor is previous)."""
+        if previous is None:
+            self._head = current.next
+        else:
+            previous.next = current.next
+        if current is self._tail:
+            self._tail = previous
+        current.next = None
+        self._count -= 1
