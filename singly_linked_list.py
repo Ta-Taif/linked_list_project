@@ -89,3 +89,18 @@ class SinglyLinkedList:
             self._tail = previous
         current.next = None
         self._count -= 1
+
+    def remove_all(self, value):
+        """Remove every node holding value. Return how many were removed."""
+        removed = 0
+        previous = None
+        current = self._head
+        while current is not None:
+            next_node = current.next
+            if current.data == value:
+                self._unlink(previous, current)
+                removed += 1
+            else:
+                previous = current
+            current = next_node
+        return removed
