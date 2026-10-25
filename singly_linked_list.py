@@ -52,3 +52,17 @@ class SinglyLinkedList:
         if self._tail is None:
             self._tail = new_node
         self._count += 1
+
+    def insert_after(self, existing_value, new_value):
+        """Insert new_value after the first node holding existing_value."""
+        current = self._head
+        while current is not None and current.data != existing_value:
+            current = current.next
+        if current is None:
+            raise ValueError(
+                f"insert_after failed: value {existing_value!r} not found in list")
+        new_node = Node(new_value, current.next)
+        current.next = new_node
+        if current is self._tail:
+            self._tail = new_node
+        self._count += 1
