@@ -33,3 +33,22 @@ class SinglyLinkedList:
                 return True
             current = current.next
         return False
+
+    # ---- core operations ----
+    def append(self, value):
+        """Add a node after the tail. O(1)."""
+        new_node = Node(value)
+        if self._tail is None:
+            self._head = self._tail = new_node
+        else:
+            self._tail.next = new_node
+            self._tail = new_node
+        self._count += 1
+
+    def prepend(self, value):
+        """Add a node before the head. O(1)."""
+        new_node = Node(value, self._head)
+        self._head = new_node
+        if self._tail is None:
+            self._tail = new_node
+        self._count += 1
