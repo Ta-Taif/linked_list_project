@@ -104,3 +104,14 @@ class SinglyLinkedList:
                 previous = current
             current = next_node
         return removed
+
+    # ---- project extensions ----
+    def build_list_forward(self, values):
+        """Build list in the same order as values (uses append)."""
+        for value in values:
+            self.append(value)
+
+    def build_list_backward(self, values):
+        """Build list in reverse order of values (uses prepend)."""
+        for value in values:
+            self.prepend(value)
